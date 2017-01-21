@@ -4,4 +4,5 @@ from models import *
 
 db.connect()
 # List the tables here what you want to create...
+db.drop_tables([Person, Mentor, Student, CodecoolClass])
 db.create_tables([Person, Mentor, Student, CodecoolClass], safe=True)
