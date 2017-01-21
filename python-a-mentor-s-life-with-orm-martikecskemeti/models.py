@@ -13,18 +13,8 @@ class BaseModel(Model):
         database = db
 
 
-class Person(BaseModel):
-
-    '''Person'''
-    first_name = CharField(max_length=255)
-    last_name = CharField(max_length=255)
-    year_of_birth = DateField()
-    gender = CharField(max_length=255)
-
-
 class CodecoolClass(BaseModel):
 
-    '''CodecoolClass'''
     location = CharField(max_length=255)
     year = IntegerField()
 
@@ -35,9 +25,18 @@ class CodecoolClass(BaseModel):
         return self.students_list
 
 
+class Person(BaseModel):
+
+    first_name = CharField(max_length=255)
+    last_name = CharField(max_length=255)
+    year_of_birth = DateField()
+    gender = CharField(max_length=255)
+    codecool_class = ForeignKeyField(
+        CodecoolClass, related_name='person_list')
+
+
 class Student(Person):
 
-    '''Student'''
     knowledge_level = IntegerField()
     energy_level = IntegerField()
     codecool_class = ForeignKeyField(
@@ -46,7 +45,6 @@ class Student(Person):
 
 class Mentor(Person):
 
-    '''Mentor'''
     nickname = CharField(max_length=255)
     codecool_class = ForeignKeyField(
         CodecoolClass, related_name='mentors_list')

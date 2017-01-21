@@ -23,7 +23,8 @@ class Tester(unittest.TestCase):
             codecool_class=bp2
         )
         self.assertEqual(type(bob).__name__, 'Person')
-        bob_loaded = Person.get(Person.first_name == 'Bob' and Person.last_name == 'Marley')
+        bob_loaded = Person.get(
+            Person.first_name == 'Bob' and Person.last_name == 'Marley')
         self.assertEqual(bob_loaded.year_of_birth, date(1945, 2, 6))
 
     def test_mentor_model(self):
